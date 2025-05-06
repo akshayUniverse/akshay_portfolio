@@ -1,0 +1,42 @@
+{
+  "categories": [
+    {
+      "name": "Programming Languages",
+      "skills": [
+        { "name": "JavaScript", "icon": "javascript" },
+        { "name": "TypeScript", "icon": "typescript" },
+        { "name": "Python", "icon": "python" },
+        { "name": "Java", "icon": "java" }
+      ]
+    },
+    {
+      "name": "Frontend",
+      "skills": [
+        { "name": "React", "icon": "react" },
+        { "name": "Next.js", "icon": "nextjs" },
+        { "name": "Tailwind CSS", "icon": "tailwind" },
+        { "name": "HTML5", "icon": "html5" },
+        { "name": "CSS3", "icon": "css3" }
+      ]
+    },
+    {
+      "name": "Backend",
+      "skills": [
+        { "name": "Node.js", "icon": "nodejs" },
+        { "name": "Express", "icon": "express" },
+        { "name": "MongoDB", "icon": "mongodb" },
+        { "name": "PostgreSQL", "icon": "postgresql" }
+      ]
+    },
+    {
+      "name": "Tools & Concepts",
+      "skills": [
+        { "name": "Git", "icon": "git" },
+        { "name": "REST API", "icon": "api" },
+        { "name": "Docker", "icon": "docker" },
+        { "name": "CI/CD", "icon": "cicd" },
+        { "name": "Agile", "icon": "agile" }
+      ]
+    }
+  ]
+} 

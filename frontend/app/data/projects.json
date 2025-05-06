@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "E-commerce Platform",
+    "description": "A full-stack e-commerce platform with user authentication, product catalog, shopping cart, and payment processing.",
+    "image": "/projects/ecommerce.jpg",
+    "techStack": ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
+    "githubLink": "https://github.com/akshayUniverse/ecommerce-platform",
+    "liveLink": "https://akshay-ecommerce.vercel.app"
+  },
+  {
+    "id": 2,
+    "title": "Task Management App",
+    "description": "A responsive task management application with features like drag-and-drop, task filtering, and user collaboration.",
+    "image": "/projects/taskmanager.jpg",
+    "techStack": ["React", "TypeScript", "Tailwind CSS", "Firebase"],
+    "githubLink": "https://github.com/akshayUniverse/task-manager",
+    "liveLink": "https://akshay-taskmanager.vercel.app"
+  },
+  {
+    "id": 3,
+    "title": "Weather Dashboard",
+    "description": "Real-time weather application with current conditions, 5-day forecast, and location search functionality.",
+    "image": "/projects/weather.jpg",
+    "techStack": ["JavaScript", "React", "CSS3", "OpenWeather API"],
+    "githubLink": "https://github.com/akshayUniverse/weather-dashboard",
+    "liveLink": "https://akshay-weather.vercel.app"
+  },
+  {
+    "id": 4,
+    "title": "Personal Blog Platform",
+    "description": "A responsive blog platform with content management system, markdown support, and category filtering.",
+    "image": "/projects/blog.jpg",
+    "techStack": ["Next.js", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    "githubLink": "https://github.com/akshayUniverse/blog-platform",
+    "liveLink": "https://akshay-blog.vercel.app"
+  },
+  {
+    "id": 5,
+    "title": "Portfolio Website",
+    "description": "Modern, responsive portfolio website built with Next.js and Tailwind CSS to showcase projects and skills.",
+    "image": "/projects/portfolio.jpg",
+    "techStack": ["Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
+    "githubLink": "https://github.com/akshayUniverse/akshay_portfolio",
+    "liveLink": "https://akshay-portfolio.vercel.app"
+  }
+] 
