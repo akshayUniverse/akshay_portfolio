@@ -40,23 +40,23 @@ export default function ContactForm() {
   
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 md:p-8">
-      <h2 className="text-2xl font-bold mb-6">Send Me a Message</h2>
+      <h2 className="text-3xl font-bold mb-6">Send Me a Message</h2>
       
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200 rounded-lg">
+        <div className="mb-6 p-4 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200 rounded-lg text-lg">
           Thank you for your message! I'll get back to you soon.
         </div>
       )}
       
       {submitStatus === 'error' && (
-        <div className="mb-6 p-4 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200 rounded-lg">
+        <div className="mb-6 p-4 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200 rounded-lg text-lg">
           There was an error sending your message. Please try again.
         </div>
       )}
       
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+          <label htmlFor="name" className="block text-lg font-medium mb-2">Name</label>
           <input
             id="name"
             name="name"
@@ -64,12 +64,12 @@ export default function ContactForm() {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+          <label htmlFor="email" className="block text-lg font-medium mb-2">Email</label>
           <input
             id="email"
             name="email"
@@ -77,19 +77,19 @@ export default function ContactForm() {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
         
         <div className="mb-4">
-          <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
+          <label htmlFor="subject" className="block text-lg font-medium mb-2">Subject</label>
           <select
             id="subject"
             name="subject"
             required
             value={formData.subject}
             onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select a subject</option>
             <option value="job">Job Opportunity</option>
@@ -100,7 +100,7 @@ export default function ContactForm() {
         </div>
         
         <div className="mb-6">
-          <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+          <label htmlFor="message" className="block text-lg font-medium mb-2">Message</label>
           <textarea
             id="message"
             name="message"
@@ -108,14 +108,14 @@ export default function ContactForm() {
             required
             value={formData.message}
             onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
         </div>
         
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-6 rounded-lg transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed text-lg"
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>
