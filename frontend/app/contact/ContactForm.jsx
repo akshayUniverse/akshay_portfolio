@@ -27,7 +27,7 @@ export default function ContactForm() {
     setErrorMessage('')
     
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(process.env.NEXT_PUBLIC_CONTACT_API, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
