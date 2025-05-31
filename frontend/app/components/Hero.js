@@ -13,7 +13,7 @@ export default function Hero() {
 
   useEffect(() => {
     const currentRole = roles[currentRoleIndex];
-    
+
     if (!isDeleting && currentText === currentRole) {
       setTimeout(() => setIsDeleting(true), 1500);
       return;
@@ -55,7 +55,9 @@ export default function Hero() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl pt-6">
-            Driven Computer Science graduate and aspiring full‑stack engineer proficient in JavaScript frameworks and cloud platforms. Strong foundation in Advanced Web Technology, Cloud Computing, and Information Security.
+          Full-stack developer with a builder's mindset, skilled in JavaScript, React, and cloud technologies. I turn ideas into fast, scalable, and secure web applications—crafting experiences that users love and businesses trust.
+
+
           </p>
           <div className="flex flex-wrap gap-4 pt-8">
             <Link href="/projects" className="px-8 py-4 text-lg bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors">
@@ -66,7 +68,7 @@ export default function Hero() {
             </Link>
           </div>
         </div>
-        
+
         <div className="flex-1 flex justify-end">
           <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full overflow-hidden border-4 border-emerald-600 dark:border-emerald-400 shadow-xl">
             <Image

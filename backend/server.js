@@ -6,6 +6,19 @@ const dotenv = require('dotenv');
 // Load environment variables
 dotenv.config();
 
+// Verify required environment variables
+const requiredEnvVars = ['SMTP_USER', 'SMTP_PASSWORD', 'RECIPIENT_EMAIL'];
+const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
+
+if (missingEnvVars.length > 0) {
+  console.error('Missing required environment variables:', missingEnvVars);
+  process.exit(1);
+}
+
+console.log('Environment variables loaded successfully');
+console.log('SMTP User:', process.env.SMTP_USER);
+console.log('Recipient Email:', process.env.RECIPIENT_EMAIL);
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -18,41 +31,11 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Server is running' });
 });
 
+// Import contact controller
+const contactController = require('./controllers/contactController');
+
 // Contact form endpoint
-app.post('/api/contact', (req, res) => {
-  try {
-    const { name, email, message } = req.body;
-    
-    if (!name || !email || !message) {
-      return res.status(400).json({ 
-        success: false, 
-        message: 'Please provide all required fields' 
-      });
-    }
-    
-    // Here you would typically:
-    // 1. Send an email notification
-    // 2. Store in database
-    // 3. Maybe integrate with a CRM
-    
-    console.log('Contact form submission:', { name, email, message });
-    
-    // Simulate processing delay
-    setTimeout(() => {
-      res.status(200).json({ 
-        success: true, 
-        message: 'Your message has been received. We will contact you soon!' 
-      });
-    }, 1000);
-    
-  } catch (error) {
-    console.error('Contact form error:', error);
-    res.status(500).json({ 
-      success: false, 
-      message: 'Server error. Please try again later.' 
-    });
-  }
-});
+app.post('/api/contact', contactController.sendContactEmail);
 
 // Start server
 app.listen(PORT, () => {

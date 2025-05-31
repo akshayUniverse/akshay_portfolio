@@ -12,27 +12,42 @@ export default function ContactForm() {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success' | 'error' | null
+  const [errorMessage, setErrorMessage] = useState('')
   
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
   
+  // Contact form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus(null)
+    setErrorMessage('')
     
     try {
-      // Simulate form submission - replace with actual API call in production
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
       
-      console.log('Form submitted:', formData)
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
+      const data = await response.json()
+      
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(data.message || 'Failed to send message. Please try again.')
+      }
     } catch (error) {
       console.error('Error submitting form:', error)
       setSubmitStatus('error')
+      setErrorMessage('An error occurred. Please try again later.')
     } finally {
       setIsSubmitting(false)
     }
@@ -50,7 +65,7 @@ export default function ContactForm() {
       
       {submitStatus === 'error' && (
         <div className="mb-6 p-4 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200 rounded-lg text-lg">
-          There was an error sending your message. Please try again.
+          {errorMessage}
         </div>
       )}
       
