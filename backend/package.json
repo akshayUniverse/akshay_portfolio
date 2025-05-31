@@ -2,10 +2,10 @@
   "name": "akshay-portfolio-backend",
   "version": "1.0.0",
   "description": "Backend API for Akshay Karada's portfolio website",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
