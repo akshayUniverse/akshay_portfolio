@@ -1,59 +1,69 @@
+// app/api/contact/route.js
+
+import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
+
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const { name, email, message } = body;
-    
-    // Validate the data
+    const { name, email, message, subject } = await request.json();
+
+    // Validation
     if (!name || !email || !message) {
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          message: 'Please fill out all fields' 
-        }),
-        { 
-          status: 400,
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
+      return NextResponse.json(
+        { success: false, message: 'Please fill out name, email, and message.' },
+        { status: 400 }
       );
     }
 
-    // In a real app, here you would:
-    // 1. Send email using a service like SendGrid or Mailgun
-    // 2. Save to database
-    // 3. Forward to a CRM or ticketing system
-    
-    // For now, we'll just log and return success
-    console.log('Contact form submission:', { name, email, message });
-    
-    return new Response(
-      JSON.stringify({ 
-        success: true, 
-        message: 'Message sent successfully! We will get back to you soon.' 
-      }),
-      { 
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    // Debug log: incoming data
+    console.log('🔵 Received contact submission:', { name, email, subject, message });
+
+    // Create transport
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD
       }
+    });
+
+    // Mail options
+    const mailOptions = {
+      from: process.env.SMTP_USER,
+      to: process.env.RECIPIENT_EMAIL,
+      subject: `Portfolio Contact${subject ? `: ${subject}` : ''} from ${name}`,
+      html: `
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        ${subject ? `<p><strong>Subject:</strong> ${subject}</p>` : ''}
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+      replyTo: email
+    };
+
+    // Debug log: before send
+    console.log('🔵 Sending email with:', {
+      user: process.env.SMTP_USER,
+      recipient: process.env.RECIPIENT_EMAIL
+    });
+
+    const info = await transporter.sendMail(mailOptions);
+
+    // Debug log: after send
+    console.log('🟢 Mail sent successfully:', info.messageId);
+
+    return NextResponse.json(
+      { success: true, message: 'Your message has been sent! I will get back to you soon.' },
+      { status: 200 }
     );
-    
   } catch (error) {
-    console.error('Contact API error:', error);
-    
-    return new Response(
-      JSON.stringify({ 
-        success: false, 
-        message: 'An error occurred while sending your message.' 
-      }),
-      { 
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
+    console.error('❌ Contact API error:', error);
+
+    return NextResponse.json(
+      { success: false, message: 'An error occurred while sending your message.' },
+      { status: 500 }
     );
   }
-} 
+}
